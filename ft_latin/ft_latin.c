@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 13:48:56 by irhett            #+#    #+#             */
-/*   Updated: 2018/01/29 14:11:22 by irhett           ###   ########.fr       */
+/*   Updated: 2018/01/29 14:14:52 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,6 @@
 void		ft_putchar(char c)
 {
 	write(1, &c, 1);
-}
-
-void		ft_putstr(char *str)
-{
-	while (*str)
-	{
-		ft_putchar(*str);
-		str++;
-	}
 }
 
 int			ft_strlen(char *str)
@@ -79,37 +70,31 @@ void		print_normal(int argc, char **argv)
 	}
 }
 
-void		print_latin(int argc, char **argv)
+void		ft_latin(char **argv, int argc)
 {
 	int		i;
 	int		j;
 
-	i = 1;
-	while (i < argc)
-	{
-		j = 1;
-		while (argv[i][j])
-		{
-			ft_putchar(argv[i][j]);
-			j++;
-		}
-		ft_putchar(argv[i][0]);
-		ft_putchar('4');
-		ft_putchar('2');
-		if (i < argc - 1)
-			ft_putchar(' ');
-		i++;
-	}
-}
-
-void		ft_latin(char **argv, int argc)
-{
 	if (argc != 1)
 	{
 		if (is_latin(argc, argv))
 			print_normal(argc, argv);
 		else
-			print_latin(argc, argv);
+		{
+			i = 1;
+			while (i < argc)
+			{
+				j = 1;
+				while (argv[i][j])
+					ft_putchar(argv[i][j++]);
+				ft_putchar(argv[i][0]);
+				ft_putchar('4');
+				ft_putchar('2');
+				if (i < argc - 1)
+					ft_putchar(' ');
+				i++;
+			}
+		}
 	}
 	ft_putchar('\n');
 }
