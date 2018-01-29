@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 13:48:56 by irhett            #+#    #+#             */
-/*   Updated: 2018/01/29 14:06:05 by irhett           ###   ########.fr       */
+/*   Updated: 2018/01/29 14:11:22 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int			ft_strlen(char *str)
 	i = 0;
 	while (str[i])
 		i++;
+	return (i);
 }
 
 int			is_latin(int argc, char **argv)
@@ -58,22 +59,23 @@ void		print_normal(int argc, char **argv)
 {
 	int		i;
 	int		j;
-	int		l;
+	int		len;
 
 	i = 1;
-	while (i < argv)
+	while (i < argc)
 	{
 		len = ft_strlen(argv[i]);
 		if (len > 2)
 			ft_putchar(argv[i][len - 3]);
-		j = 1;
-		while (j < len - 2)
+		j = 0;
+		while (j < len - 3)
 		{
 			ft_putchar(argv[i][j]);
 			j++;
 		}
-		if (i < argv - 1)
+		if (i < argc - 1)
 			ft_putchar(' ');
+		i++;
 	}
 }
 
@@ -108,6 +110,6 @@ void		ft_latin(char **argv, int argc)
 			print_normal(argc, argv);
 		else
 			print_latin(argc, argv);
-		ft_putchar('\n');
 	}
+	ft_putchar('\n');
 }
